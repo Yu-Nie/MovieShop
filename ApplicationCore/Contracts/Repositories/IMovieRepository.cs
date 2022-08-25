@@ -9,11 +9,15 @@ namespace ApplicationCore.Contracts.Repositories
 {
     public interface IMovieRepository
     {
-        // get top 30 grossing movies from database
+        // CRUD methods
+        // get top 30 grossing movies movies from database
 
         List<Movie> GetTop30GrossingMovies();
-        // get movie by id
 
-        // get movie by genre
+        // Get Movie By Id
+        // Get Movie By Genre
+
+
+
     }
 }

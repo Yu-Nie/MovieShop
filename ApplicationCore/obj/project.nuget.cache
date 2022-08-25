@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "36ylGkI498mu4PPj0IvmftlkchIMKmH2fBQDr7+Nskb9W24a10hQ/LCrs/MvFsiMTRWVpnBHEiRcVphlcjBOLQ==",
+  "dgSpecHash": "rhjKsHKnOGSrpxwPoHXqG9PEGqVvRkG8sFKyl8HHYpoFXDPPS97xIS/L59lrDLUpLEYEDb5kABOvUhp7z4q/HQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mrcry\\Desktop\\antra\\week4\\MovieShop\\ApplicationCore\\ApplicationCore.csproj",
+  "projectFilePath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\ApplicationCore\\ApplicationCore.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
