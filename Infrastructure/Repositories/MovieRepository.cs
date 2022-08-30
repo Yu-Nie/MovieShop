@@ -1,20 +1,42 @@
 ﻿using ApplicationCore.Contracts.Repositories;
 using ApplicationCore.Entities;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
+    
     public class MovieRepository : IMovieRepository
     {
-        public List<Movie> GetTop30GrossingMovies()
+        private readonly MovieShopDbContext _movieShopDbContext;
+        public MovieRepository(MovieShopDbContext dbContext)
+        {
+            _movieShopDbContext = dbContext;
+        }
+        
+
+        public async Task<Movie> GetById(int id)
+        {
+            // select * from movie where id = 1 join  genre, cast, moviegenre, moviecast
+            var movieDetails = await _movieShopDbContext.Movies
+                .Include(m => m.GenresOfMovie).ThenInclude(m => m.Genre)
+                .Include(m => m.CastsOfMovie).ThenInclude(m => m.Cast)
+                .Include(m => m.Trailers)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            return movieDetails;
+        }
+        
+        
+        public async Task<List<Movie>> GetTop30GrossingMovies()
         {
             // we need to go to database and get 30 top movies from movies table
 
-            var movies = new List<Movie>
+            /*var movies = new List<Movie>
             {
             new Movie { Id=1, Title="Inception", PosterUrl="https://image.tmdb.org/t/p/w342//9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" },
             new Movie { Id=2, Title="Interstellar", PosterUrl="https://image.tmdb.org/t/p/w342//gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" },
@@ -29,8 +51,10 @@ namespace Infrastructure.Repositories
             new Movie { Id=11, Title="Django Unchained", PosterUrl="https://image.tmdb.org/t/p/w342//7oWY8VDWW7thTzWh3OKYRkWUlD5.jpg" },
             new Movie { Id=12, Title="Iron Man", PosterUrl="https://image.tmdb.org/t/p/w342//78lPtwv72eTNqFW9COBYI0dWDJa.jpg" }
 
-            };
+            };*/
+            var movies = await _movieShopDbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
             return movies;
         }
+
     }
 }

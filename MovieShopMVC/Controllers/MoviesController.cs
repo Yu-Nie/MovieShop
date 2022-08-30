@@ -1,10 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApplicationCore.Contracts.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MovieShopMVC.Controllers
 {
     public class MoviesController : Controller
     {
-        public IActionResult Details(int id)
+        private readonly IMovieService _movieService;
+
+        public MoviesController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
 
             // go to database and get the movie information by
@@ -13,12 +22,11 @@ namespace MovieShopMVC.Controllers
             // Dapper Stackoverflow -> Micro ORM
             // Entity Framework Core => Full ORM
 
-            // Select * from Movies where id =12;
             // Code is Maintenable, Reusable, Readable, extensible, testable
             // layers => Layered architecture
             // Onion, Clean 
-
-            return View();
+            var movieDetails = await _movieService.GetMovieDetails(id);
+            return View(movieDetails);
         }
     }
 }

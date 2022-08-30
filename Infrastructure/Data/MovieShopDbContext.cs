@@ -24,6 +24,13 @@ namespace Infrastructure.Data
         public DbSet<MovieGenre> MovieGenres { get; set; }
         public DbSet<Trailer> Trailers { get; set; }
         public DbSet<Cast> Casts { get; set; }
+        public DbSet<MovieCast> MovieCasts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> userRoles { get; set; }
 
         // override the method called OnModelCreating for Fluent API
 
@@ -32,6 +39,10 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<Favorite>(ConfigureFavorite);
+            modelBuilder.Entity<Review>(ConfigureReview);
+            modelBuilder.Entity<Purchase>(ConfigurePurchase);
+            modelBuilder.Entity<UserRole>(ConfigureUserRole);
         }
 
         private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
@@ -46,11 +57,37 @@ namespace Infrastructure.Data
             builder.HasKey(mg => new { mg.MovieId, mg.CastId });
         }
 
+        private void ConfigureFavorite(EntityTypeBuilder<Favorite> builder)
+        {
+            builder.ToTable("Favorites");
+            builder.HasKey(mg => new { mg.MovieId, mg.UserId });
+        }
+
+        private void ConfigureReview(EntityTypeBuilder<Review> builder)
+        {
+            builder.ToTable("Reviews");
+            builder.HasKey(mg => new { mg.MovieId, mg.UserId });
+            builder.Property(mg => mg.Rating).HasColumnType("decimal(3, 2)").HasDefaultValue(9.9m);
+        }
+
+        private void ConfigurePurchase(EntityTypeBuilder<Purchase> builder)
+        {
+            builder.ToTable("Purchases");
+            builder.HasKey(mg => new { mg.MovieId, mg.UserId });
+            builder.Property(mg => mg.TotalPrice).HasColumnType("decimal(5, 2)").HasDefaultValue(9.9m);
+        }
+
+        private void ConfigureUserRole(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.ToTable("UserRoles");
+            builder.HasKey(mg => new { mg.RoleId, mg.UserId });
+        }
+
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
         {
             // specify all the Fluent API rules
             builder.HasKey(m => m.Id);
-            builder.Property(m => m.Title).HasMaxLength(512);
+            builder.Property(m => m.Title).HasMaxLength(256);
             builder.Property(m => m.Overview).HasMaxLength(4096);
             builder.Property(m => m.Tagline).HasMaxLength(512);
             builder.Property(m => m.ImdbUrl).HasMaxLength(2084);
@@ -77,6 +114,7 @@ namespace Infrastructure.Data
 
 
         }
+
 
     }
 }

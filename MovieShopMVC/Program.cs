@@ -1,5 +1,6 @@
 using ApplicationCore.Contracts.Repositories;
 using ApplicationCore.Contracts.Services;
+using Infrastructrue.Services;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
@@ -12,6 +13,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 
 // inject the connection string from appsettings.json in to MovieShopDbContext class
 

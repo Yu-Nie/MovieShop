@@ -12,9 +12,13 @@ namespace ApplicationCore.Contracts.Repositories
         // CRUD methods
         // get top 30 grossing movies movies from database
 
-        List<Movie> GetTop30GrossingMovies();
+        //List<Movie> GetTop30GrossingMovies();
+        Task<List<Movie>> GetTop30GrossingMovies();
 
         // Get Movie By Id
+
+        // Movie GetById(int id);
+        Task<Movie> GetById(int id);
         // Get Movie By Genre
 
 
