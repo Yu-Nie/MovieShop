@@ -9,7 +9,7 @@ namespace ApplicationCore.Entities
 {
     public class User
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(128)]
         public string FirstName { get; set; }
