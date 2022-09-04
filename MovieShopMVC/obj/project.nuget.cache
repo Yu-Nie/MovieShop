@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wYcW7QYQA5fFc2k1SQo0Yfl4jx3Jp3iXpTAqrpeWU4kyC1FKntYEZVCRRalCp0hG4dBNoAkqh7+RXZwrulZ8mg==",
+  "dgSpecHash": "W4D57l2qgWCjGUUCye8XM64ppEojw8t6rXtQKqz0D4S5Bi+DPLRBsSXYCvrMzfstit5klc0g2VjxYJH7A0scRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\MovieShopMVC\\MovieShopMVC.csproj",
+  "projectFilePath": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\MovieShopMVC\\MovieShopMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mrcry\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\mrcry\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
