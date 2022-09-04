@@ -42,6 +42,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Favorite>(ConfigureFavorite);
             modelBuilder.Entity<Review>(ConfigureReview);
             modelBuilder.Entity<Purchase>(ConfigurePurchase);
+            modelBuilder.Entity<User>(ConfigureUser);
             modelBuilder.Entity<UserRole>(ConfigureUserRole);
         }
 
@@ -83,6 +84,16 @@ namespace Infrastructure.Data
             builder.HasKey(mg => new { mg.RoleId, mg.UserId });
         }
 
+        public void ConfigureUser(EntityTypeBuilder<User> builder)
+        {
+            builder.HasKey(m => m.Id);
+            builder.Property(m => m.FirstName).HasMaxLength(128);
+            builder.Property(m => m.LastName).HasMaxLength(128);
+            builder.Property(m => m.Email).HasMaxLength(256);
+            builder.Property(m => m.HashedPassword).HasMaxLength(1024);
+            builder.Property(m => m.Salt).HasMaxLength(128);
+            builder.Property(m => m.PhoneNumber).HasMaxLength(16);
+        }
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
         {
             // specify all the Fluent API rules

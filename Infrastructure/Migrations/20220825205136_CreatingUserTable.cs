@@ -28,10 +28,10 @@ namespace Infrastructure.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     HashedPassword = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
                     Salt = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
                     IsLocked = table.Column<bool>(type: "bit", nullable: false),
-                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

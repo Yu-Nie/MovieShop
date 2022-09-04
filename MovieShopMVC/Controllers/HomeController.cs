@@ -7,7 +7,6 @@ using System.Diagnostics;
 namespace MovieShopMVC.Controllers
 {
     // Controllers => Services (BL) => Repositories => Database using EF Core or Dapper or both
-    // test
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

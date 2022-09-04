@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ApplicationCore.Models;
 
 namespace Infrastructure.Repositories
 {
@@ -31,7 +32,28 @@ namespace Infrastructure.Repositories
             return movieDetails;
         }
         
-        
+        public async Task<PagedResultSet<Movie>> GetMoviesByGenrePagination(int genreId, int pageSize = 30, int page = 1)
+        {
+            // get total row count
+            var totalMovieOfGenre = await _movieShopDbContext.MovieGenres.Where(g => g.GenreId == genreId).CountAsync();
+            if(totalMovieOfGenre == 0)
+            {
+                throw new Exception("No movies found for this genre.");
+            }
+
+            // get the actual data
+            var movies = await _movieShopDbContext.MovieGenres.Where(g => g.GenreId == genreId).Include(g => g.Movie)
+                .OrderByDescending(m => m.Movie.Revenue).Select(m => new Movie
+                {
+                    Id = m.MovieId,
+                    PosterUrl = m.Movie.PosterUrl,
+                    Title = m.Movie.Title
+                })
+                .Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            var pagedMovies = new PagedResultSet<Movie>(movies, page, pageSize, totalMovieOfGenre);
+            return pagedMovies;
+        }
         public async Task<List<Movie>> GetTop30GrossingMovies()
         {
             // we need to go to database and get 30 top movies from movies table

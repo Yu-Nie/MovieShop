@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Entities;
+using ApplicationCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,9 @@ namespace ApplicationCore.Contracts.Repositories
 
         // Movie GetById(int id);
         Task<Movie> GetById(int id);
-        // Get Movie By Genre
 
+        // Get Movie By Genre
+        Task<PagedResultSet<Movie>> GetMoviesByGenrePagination(int genreId, int pageSize = 30, int page = 1);
 
 
     }
