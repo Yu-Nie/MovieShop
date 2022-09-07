@@ -51,6 +51,7 @@ namespace MovieShopMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> FavoriteMovie()
         {
+            
             return View();
         }
 

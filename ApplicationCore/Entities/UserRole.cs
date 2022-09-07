@@ -12,7 +12,7 @@ namespace ApplicationCore.Entities
         public int UserId { get; set; }
 
         // navigation
-        public Movie Role { get; set; }
-        public Genre User { get; set; }
+        public Role Role { get; set; }
+        public User User { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace ApplicationCore.Entities
 
         // navigation
         public Movie Movie { get; set; }
-        public Genre User { get; set; }
+        public User User { get; set; }
     }
 }

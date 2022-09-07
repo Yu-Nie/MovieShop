@@ -114,7 +114,9 @@
                 {
                     <tr>
                         <td>
-                            <img src="@cast.ProfilePath" class="rounded-circle" alt="@cast.Name" width="60" height="80"/>
+                            <a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id">
+                                <img src="@cast.ProfilePath" class="rounded-circle" alt="@cast.Name" width="60" height="80" />
+                            </a>
                         </td>
                         <td> @cast.Name </td>
                         <td> @cast.Character</td>

@@ -14,7 +14,7 @@ namespace ApplicationCore.Models
             
             Genres = new List<GenreModel>();
             Trailers = new List<TrailerModel>();
-            Casts = new List<CastsModel>();
+            Casts = new List<CastDetailsModel>();
         }
 
         public int Id { get; set; }
@@ -34,6 +34,6 @@ namespace ApplicationCore.Models
 
         public List<GenreModel> Genres { get; set; }
         public List<TrailerModel> Trailers { get; set; }
-        public List<CastsModel> Casts { get; set; }
+        public List<CastDetailsModel> Casts { get; set; }
     }
 }

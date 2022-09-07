@@ -22,6 +22,9 @@ namespace ApplicationCore.Entities
         public bool IsLocked { get; set; }
         public string? ProfilePictureUrl { get; set; }
 
-
+        public ICollection<Purchase> PurchaseOfUser { get; set; }
+        public ICollection<Favorite> FavoriteOfUser { get; set; }
+        public ICollection<Review> ReviewOfUser { get; set; }
+        public ICollection<UserRole> RoleOfUser { get; set; }
     }
 }

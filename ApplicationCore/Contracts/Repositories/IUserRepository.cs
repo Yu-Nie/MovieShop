@@ -11,5 +11,8 @@ namespace ApplicationCore.Contracts.Repositories
     {
         Task<User> GetUserByEmail(string email);
         Task<User> AddUser(User user);
+        Task<User> GetUserPurchases(int id);
+        Task<User> GetUserFavorites(int id);
+        Task<User> GetUserReviews(int id);
     }
 }

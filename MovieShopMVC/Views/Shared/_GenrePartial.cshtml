@@ -4,7 +4,7 @@
 <div class="text-start">
     <ul class="nav">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle btn btn-secondary" role="button" aria-expanded="false">Genres </a>
+            <a class="nav-link dropdown-toggle btn btn-secondary" role="button" data-bs-toggle="dropdown" aria-expanded="false">Genres </a>
             <div class="dropdown-menu">
                 @foreach (var genre in await genreService.GetAllGenres())
                 {

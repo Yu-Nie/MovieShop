@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationCore.Contracts.Repositories;
 using ApplicationCore.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Infrastructrue.Repositories
 {
     
-    public class CastRepository
+    public class CastRepository: ICastRepository
     {
         private readonly MovieShopDbContext _movieShopDbContext;
         public CastRepository(MovieShopDbContext dbContext)
@@ -19,8 +20,9 @@ namespace Infrastructrue.Repositories
         }
         public async Task<Cast> GetById(int id)
         {
-            // select * from movie where id = 1 join  genre, cast, moviegenre, moviecast
-            var castDetails = await _movieShopDbContext.Casts.FirstOrDefaultAsync(m => m.Id == id);
+            var castDetails = await _movieShopDbContext.Casts
+                .Include(m => m.MoviesOfCast).ThenInclude(m => m.Movie)
+                .FirstOrDefaultAsync(m => m.Id == id);
             return castDetails;
         }
     }
