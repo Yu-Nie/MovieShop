@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Models
 {
-    public class PurchaseMovieModel
+    public class FavoriteMovieModel
     {
-        public int UserId { get; set; }
         public int MovieId { get; set; }
-        public Guid PurchaseNumber => Guid.NewGuid();
-        public DateTime PurchaseDateTime => DateTime.Now;
-
+        public int UserId { get; set; }
     }
 }

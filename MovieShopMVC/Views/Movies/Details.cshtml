@@ -66,6 +66,17 @@
                     <partial name="_PurchaseMovie" model="purchaseMovie" />
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-10 mt-4 offset-1">
+                    @{
+                        FavoriteMovieModel favoriteMovie = new FavoriteMovieModel
+            {
+                MovieId = Model.Id
+            };
+                    }
+                    <partial name="_FavoriteMovie" model="favoriteMovie" />
+                </div>
+            </div>
         </div>
 
     </div>

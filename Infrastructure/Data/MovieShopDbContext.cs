@@ -93,21 +93,21 @@ namespace Infrastructure.Data
             builder.Property(m => m.HashedPassword).HasMaxLength(1024);
             builder.Property(m => m.Salt).HasMaxLength(128);
             builder.Property(m => m.PhoneNumber).HasMaxLength(16);
-            builder.HasMany(m => m.PurchaseOfUser);
+            /*builder.HasMany(m => m.PurchaseOfUser);
             builder.HasMany(m => m.ReviewOfUser);
             builder.HasMany(m => m.RoleOfUser);
-            builder.HasMany(m => m.FavoriteOfUser);
+            builder.HasMany(m => m.FavoriteOfUser);*/
         }
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
         {
             // specify all the Fluent API rules
             builder.HasKey(m => m.Id);
-            builder.HasMany(m => m.CastsOfMovie);
+            /*builder.HasMany(m => m.CastsOfMovie);
             builder.HasMany(m => m.GenresOfMovie);
             builder.HasMany(m => m.PurchaseOfMovie);
             builder.HasMany(m => m.FavoritesOfMovie);
             builder.HasMany(m => m.ReviewsOfMovie);
-            builder.HasMany(m => m.Trailers);
+            builder.HasMany(m => m.Trailers);*/
             builder.Property(m => m.Title).HasMaxLength(256);
             builder.Property(m => m.Overview).HasMaxLength(4096);
             builder.Property(m => m.Tagline).HasMaxLength(512);

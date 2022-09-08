@@ -14,7 +14,7 @@
     var purchased = await userService.IsPurchased(Model.MovieId, currentUser.UserId);
     if (purchased)
     {
-        <button type="button" class="btn btn-outline-primary">Watch <i class="bi bi-play-btn-fill"></i></button>
+        <button type="button" class="btn btn-outline-primary">WATCH MOVIE <i class="bi bi-play-btn-fill"></i></button>
     }
     else
     {
@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-footer">
                         <form asp-action="BuyMovie" asp-controller="User">
-                            <input asp-for="UseId" value="@currentUser.UserId" type="hidden" />
+                            <input asp-for="UserId" value="@currentUser.UserId" type="hidden" />
                             <input asp-for="MovieId" value="@Model.MovieId" type="hidden" />
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
                             <button type="submit" class="btn btn-primary">Ok</button>

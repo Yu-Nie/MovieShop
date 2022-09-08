@@ -13,5 +13,11 @@ namespace ApplicationCore.Contracts.Services
         Task<bool> IsPurchased(int movieId, int userId);
         Task<List<MovieCardModel>> GetAllPurchasesdMovies(int userId);
         Task<PurchaseDetailsModel> GetPurchaseDetails(int movieId, int userId);
+
+
+        Task<List<MovieCardModel>> GetAllFavoriteMovies(int userId);
+        Task<bool> LikeMovie(FavoriteMovieModel favoriteMovie);
+        Task<bool> UnLikeMovie(FavoriteMovieModel favoriteMovie);
+        Task<bool> Liked(int movieId, int userId);
     }
 }
