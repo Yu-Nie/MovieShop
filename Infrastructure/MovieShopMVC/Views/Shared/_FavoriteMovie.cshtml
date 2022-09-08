@@ -1,0 +1,36 @@
+﻿@model ApplicationCore.Models.FavoriteMovieModel
+@using ApplicationCore.Contracts.Services
+@using MovieShopMVC.Infra
+@inject IUserService userService
+@inject IMovieService movieService
+@inject ICurrentUser currentUser
+
+@{
+    var movie = await movieService.GetMovieDetails(Model.MovieId);
+}
+
+@if (currentUser.IsAuthenticated)
+{
+    var liked = await userService.Liked(Model.MovieId, currentUser.UserId);
+    if (liked)
+    {
+        <form asp-action="RemoveFavorite" asp-controller="User">
+            <input asp-for="UserId" value="@currentUser.UserId" type="hidden"/>
+            <input asp-for="MovieId" value="@Model.MovieId" type="hidden" />
+            <button type="submit" class="btn btn-light">UNLIKE <i class="bi bi-file-x-fill"></i></button>
+        </form>
+    }
+    else
+    {
+        <form asp-action="FavoriteMovie" asp-controller="User">
+            <input asp-for="UserId" value="@currentUser.UserId" type="hidden"/>
+            <input asp-for="MovieId" value="@Model.MovieId" type="hidden" />
+            <button type="submit" class="btn btn-light">LIKE <i class="bi bi-star-fill"></i></button>
+        </form>
+    }
+}
+else{
+    <form asp-action="Login" asp-controller="Account">
+            <button type="submit" class="btn btn-light">LIKE <i class="bi bi-star-fill"></i></button>
+        </form>
+}

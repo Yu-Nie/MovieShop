@@ -1,0 +1,42 @@
+﻿@model ApplicationCore.Models.CastDetailsModel
+
+<div class="row">
+    <div class="col-md-3 offset-2">
+        <div>
+            <a href="@Model.TmdbUrl">
+                <img src="@Model.ProfilePath" width="200" height="300"/>
+            </a>
+            <br />
+            <h5>@Model.Name</h5>
+            @if(@Model.Gender == "2")
+            {
+                <h5>Male</h5>
+            }
+            else
+            {
+                <h5>Female</h5>
+            }
+        </div>
+    </div>
+    <div class="col-6 offset-1">
+        <h5>Participated Movies</h5>
+        <hr />
+        <table class="table">
+            <tbody>
+                @foreach (var movie in @Model.Movies)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
+                                <img src="@movie.PosterUrl" width="100" height="150" />
+                            </a>
+                        </td>
+                        <td> @movie.Title </td>
+                        <td> @Model.Character</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

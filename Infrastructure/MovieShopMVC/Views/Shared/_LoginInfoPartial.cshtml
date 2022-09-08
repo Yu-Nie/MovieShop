@@ -1,0 +1,29 @@
+﻿@using MovieShopMVC.Infra
+@inject ICurrentUser currentUser
+
+@if (currentUser.IsAuthenticated)
+{
+    <div class="text-end">
+        <ul class="nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @currentUser.FullName
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-controller="User" asp-action="purchases">Purchases <i class="bi bi-film"></i></a>
+                    <a class="dropdown-item" asp-controller="User" asp-action="favorites">Favorites <i class="bi bi-star-fill"></i></a>
+                    <a class="dropdown-item" asp-controller="User" asp-action="Editprofile">Account <i class="bi bi-person-circle"></i></a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout <i class="bi bi-box-arrow-right"></i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+}
+else{
+    <div class="text-end">
+        <a class="btn btn-outline-secondary me-2" asp-controller="Account" asp-action="Login">Login</a>
+        <a class="btn btn-outline-secondary me-2" asp-controller="Account" asp-action="Register">Register</a>
+    </div>
+}
+
+

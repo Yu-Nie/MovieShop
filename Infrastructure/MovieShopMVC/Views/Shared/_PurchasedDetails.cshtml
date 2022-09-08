@@ -1,0 +1,53 @@
+﻿@model ApplicationCore.Models.MovieCardModel
+@using ApplicationCore.Contracts.Services;
+@using MovieShopMVC.Infra;
+@inject IUserService userService;
+@inject ICurrentUser currentUser;
+
+@{
+    var purchaseDetail = await userService.GetPurchaseDetails(Model.Id, currentUser.UserId);
+}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    purchase detail
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Purchase Details</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-3">
+                        <img class="img-fluid" src="@purchaseDetail.PosterUrl" />
+                    </div>
+                    <div class="col-8">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="bi bi-calendar-week"></i> Purchased Date 
+                                <span class="badge rounded-pill bg-dark">@purchaseDetail.PurchasedDate.ToString("MMM dd,yyyy")</span>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="bi bi-cash-coin"></i> Price
+                                <span class="badge rounded-pill bg-dark">$@purchaseDetail.TotalPrice.ToString("0.00")</span>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="bi bi-check-circle-fill"></i> Purchase Number 
+                                <span class="badge rounded-pill bg-dark">@purchaseDetail.PurchaseNumber</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

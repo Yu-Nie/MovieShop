@@ -1,0 +1,103 @@
+﻿@model ApplicationCore.Models.ReviewDetailsModel
+@using ApplicationCore.Contracts.Services
+@using MovieShopMVC.Infra
+@inject IUserService userService
+@inject IMovieService movieService
+@inject ICurrentUser currentUser
+
+@{
+    var movie = await movieService.GetMovieDetails(Model.MovieId);
+}
+
+@if (currentUser.IsAuthenticated)
+{
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditReviewModal">Review <i class="bi bi-pencil-square"></i></button>
+    var isReviewed = await userService.ReviewExits(Model.MovieId, currentUser.UserId);
+    @if (isReviewed)
+    {
+        var reviewDetails = await userService.GetReviewDetails(Model.MovieId, currentUser.UserId);
+        <div class="modal fade" id="EditReviewModal" tabindex="-1" aria-labelledby="EditReviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="img-fluid" src="@movie.PosterUrl" />
+                            </div>
+                            <div class="col-8">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="bi bi-calendar-week"></i> Created Date
+                                        <span class="badge rounded-pill bg-dark">@reviewDetails.CreatedDate.ToString("MMM dd,yyyy")</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="bi bi-star-fill"></i> Rating
+                                        <span class="badge rounded-pill bg-dark">@reviewDetails.Rating.ToString("0.00")</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <p>@reviewDetails.ReviewText</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <form asp-action="DeleteReview" asp-controller="User">
+                            <input asp-for="UserId" value="@currentUser.UserId" type="hidden" />
+                            <input asp-for="MovieId" value="@Model.MovieId" type="hidden" />
+                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Delete</button>
+                        </form>
+                        <a class="btn btn-outline-secondary me-2" asp-action="Review" asp-controller="User">Edit</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="modal fade" id="EditReviewModal" tabindex="-1" aria-labelledby="EditReviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form asp-action="AddReview" asp-controller="User">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label asp-for="Rating" class="control-label"></label>
+                                    <input asp-for="Rating" type="text" class="form-control" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ReviewText" class="control-label"></label>
+                                    <input asp-for="ReviewText" type="text" class="form-control">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+
+                            <input asp-for="UserId" value="@currentUser.UserId" type="hidden" />
+                            <input asp-for="MovieId" value="@Model.MovieId" type="hidden" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                            <button type="submit" class="btn btn-light">Submit</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <form asp-action="Login" asp-controller="Account">
+        <button type="submit" class="btn btn-light">REVIEW <i class="bi bi-pencil-square"></i></button>
+    </form>
+}
