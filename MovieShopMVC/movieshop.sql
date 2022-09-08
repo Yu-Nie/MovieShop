@@ -221,7 +221,7 @@ CREATE TABLE [Favorites] (
     [MovieId] int NOT NULL,
     [UserId] int NOT NULL,
     CONSTRAINT [PK_Favorites] PRIMARY KEY ([MovieId], [UserId]),
-    CONSTRAINT [FK_Favorites_Genres_UserId] FOREIGN KEY ([UserId]) REFERENCES [Genres] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Favorites_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_Favorites_Movies_MovieId] FOREIGN KEY ([MovieId]) REFERENCES [Movies] ([Id]) ON DELETE CASCADE
 );
 GO
@@ -246,7 +246,7 @@ CREATE TABLE [Reviews] (
     [Rating] decimal(18,2) NOT NULL,
     [ReviewText] nvarchar(max) NOT NULL,
     CONSTRAINT [PK_Reviews] PRIMARY KEY ([MovieId], [UserId]),
-    CONSTRAINT [FK_Reviews_Genres_UserId] FOREIGN KEY ([UserId]) REFERENCES [Genres] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Reviews_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_Reviews_Movies_MovieId] FOREIGN KEY ([MovieId]) REFERENCES [Movies] ([Id]) ON DELETE CASCADE
 );
 GO
@@ -321,7 +321,7 @@ CREATE TABLE [UserRoles] (
     [RoleId] int NOT NULL,
     [UserId] int NOT NULL,
     CONSTRAINT [PK_UserRoles] PRIMARY KEY ([RoleId], [UserId]),
-    CONSTRAINT [FK_UserRoles_Genres_UserId] FOREIGN KEY ([UserId]) REFERENCES [Genres] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_UserRoles_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_UserRoles_Movies_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [Movies] ([Id]) ON DELETE CASCADE
 );
 GO

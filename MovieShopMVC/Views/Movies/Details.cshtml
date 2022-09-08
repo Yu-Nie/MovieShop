@@ -1,4 +1,5 @@
 ﻿@model ApplicationCore.Models.MovieDetailsModel
+@using ApplicationCore.Models
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 
@@ -26,7 +27,7 @@
                 <div class="col-8">
                     @foreach (var genre in Model.Genres)
                     {
-                        <a class="badge bg-secondary ml-1 text-decoration-none" asp-action="Genre" asp-route-id="@genre.Id">
+                        <a class="badge bg-secondary ml-1 text-decoration-none" asp-action="GenreMovies" asp-route-id="@genre.Id">
                             @genre.Name
                         </a>
                     }
@@ -56,7 +57,13 @@
             </div>
             <div class="row">
                 <div class="col-md-10 mt-4 offset-1">
-                    <button type="button" class="btn btn-light">BUY @Model.Price</button>
+                    @{
+                        PurchaseMovieModel purchaseMovie = new PurchaseMovieModel
+            {
+                MovieId = Model.Id
+            };
+                    }
+                    <partial name="_PurchaseMovie" model="purchaseMovie" />
                 </div>
             </div>
         </div>
@@ -86,17 +93,17 @@
                 <span class="badge rounded-pill bg-dark">$@Model.Budget.Value.ToString("0.00")
             </li></span>
             <li class="list-group-item">
-                <img src="https://www.iconbolt.com/preview/facebook/font-awesome-brands/imdb.svg" width="30" height="18"/>
+                <img src="https://www.iconbolt.com/preview/facebook/font-awesome-brands/imdb.svg" width="30" height="18" />
                 <i class="bi bi-box-arrow-up-right"></i>
             </li>
         </ul>
         <hr />
         <h5>TRAILERS</h5>
-         <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush">
             @foreach (var trailer in Model.Trailers)
             {
                 <li class="list-group-item">
-                    <i class="bi bi-play-btn-fill"></i> 
+                    <i class="bi bi-play-btn-fill"></i>
                     <a href="@trailer.TrailerUrl" class="text-decoration-none">@trailer.Name</a>
                 </li>
             }

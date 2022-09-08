@@ -63,7 +63,7 @@ namespace Infrastructrue.Services
         public async Task<bool> PurchaseMovies(PurchaseMovieModel purchaseMovie)
         {
             var movie = await _movieRepository.GetById(purchaseMovie.MovieId);
-            var dbPurchase = new Purchase
+            Purchase dbPurchase = new Purchase
             {
                 MovieId = purchaseMovie.MovieId,
                 UserId = purchaseMovie.UseId,

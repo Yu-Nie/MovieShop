@@ -1,4 +1,5 @@
-﻿using ApplicationCore.Models;
+﻿using ApplicationCore.Contracts.Services;
+using ApplicationCore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieShopMVC.Infra;
@@ -9,10 +10,12 @@ namespace MovieShopMVC.Controllers
     public class UserController : Controller
     {
         private readonly ICurrentUser _currentUser;
+        private readonly IUserService _userService;
 
-        public UserController(ICurrentUser currentUser)
+        public UserController(ICurrentUser currentUser, IUserService userService)
         {
             _currentUser = currentUser;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -20,8 +23,8 @@ namespace MovieShopMVC.Controllers
         {
             // get all the movies purchased by user, user id
             // httpcontext.user.claims and then call the database and get the information to the view
-            var userId = _currentUser.UserId;
-            return View();
+            var moives = await _userService.GetAllPurchasesdMovies(_currentUser.UserId);
+            return View(moives);
         }
 
         [HttpGet]
@@ -43,9 +46,10 @@ namespace MovieShopMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> BuyMovie()
+        public async Task<IActionResult> BuyMovie(PurchaseMovieModel model)
         {
-            return View();
+            await _userService.PurchaseMovies(model);
+            return RedirectToAction("Purchases", "User", new {id = model.UseId});
         }
 
         [HttpPost]

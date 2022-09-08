@@ -1,1 +1,16 @@
-﻿
+﻿@model List<ApplicationCore.Models.MovieCardModel>
+
+<div class="container-fluid">
+    <div class="row">
+            @foreach (var movieCard in Model)
+            {
+                <div class="col-6 col-lg-3 col-sm-4 col-xl-2">
+                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movieCard.Id">
+                        <img src="@movieCard.PosterUrl" class="img-fluid" alt="@movieCard.Title" />
+                    </a>
+                    <partial name="_PurchasedDetails" model="@movieCard" />
+                </div>
+            }
+
+        </div>
+</div>
