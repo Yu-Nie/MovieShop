@@ -9529,11 +9529,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\MovieShopMVC\\MovieShopMVC.csproj",
+      "projectUniqueName": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\MovieShopMVC\\MovieShopMVC.csproj",
       "projectName": "MovieShopMVC",
-      "projectPath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\MovieShopMVC\\MovieShopMVC.csproj",
+      "projectPath": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\MovieShopMVC\\MovieShopMVC.csproj",
       "packagesPath": "C:\\Users\\mrcry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\MovieShopMVC\\obj\\",
+      "outputPath": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\MovieShopMVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mrcry\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9550,11 +9550,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\ApplicationCore\\ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\ApplicationCore\\ApplicationCore.csproj"
+            "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\ApplicationCore\\ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\ApplicationCore\\ApplicationCore.csproj"
             },
-            "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZPnuxssx+VE9EnCnO5gaCLeEKjk0aAHvCe5axBlRUijVAMyDVqeHZYFwNkzGPQs2y87AZ/jmYCWLR9CqJ9retg==",
+  "dgSpecHash": "rbs6kmTilcu0ahiBoM4NT9AnIDATsD2sYSYHvj45Wo0EYTyOa8zuKC4b4MUc5AsnylgdW5Z2L1CSJKKTX9Vtfg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mrcry\\Desktop\\antra\\MovieShop\\MovieShopMVC\\MovieShopAPI\\MovieShopAPI.csproj",
+  "projectFilePath": "C:\\Users\\mrcry\\Documents\\GitHub\\MovieShop\\MovieShopAPI\\MovieShopAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mrcry\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.8\\microsoft.aspnetcore.authentication.jwtbearer.6.0.8.nupkg.sha512",
     "C:\\Users\\mrcry\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.8\\microsoft.aspnetcore.cryptography.internal.6.0.8.nupkg.sha512",
