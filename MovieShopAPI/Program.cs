@@ -64,7 +64,7 @@ app.UseMovieShopExceptionMiddleware();
 app.UseHttpsRedirection();
 app.UseCors(policy =>
 {
-    policy.WithOrigins(builder.Configuration["http://localhost:4200/"]).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+    policy.WithOrigins(builder.Configuration["AngularURL"]).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
 });
 
 app.UseAuthentication();
