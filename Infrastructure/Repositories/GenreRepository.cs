@@ -25,5 +25,12 @@ namespace Infrastructure.Repositories
             return genres;
         }
 
+        public async Task<Genre> AddGenre(Genre genre)
+        {
+            _movieShopDbContext.Genres.Add(genre);
+            await _movieShopDbContext.SaveChangesAsync();
+            return genre;
+        }
+
     }
 }
