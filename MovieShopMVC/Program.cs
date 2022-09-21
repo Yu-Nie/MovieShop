@@ -51,6 +51,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//app.UseExceptionHandler("Homt/Error");
+app.UseMovieShopExceptionMiddleware();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

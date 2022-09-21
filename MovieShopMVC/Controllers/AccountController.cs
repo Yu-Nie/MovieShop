@@ -31,6 +31,11 @@ namespace MovieShopMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginModel model)
         {
+            
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var userSuccess = await _accountService.ValidateUser(model);
             if (userSuccess == null)
             {
@@ -70,13 +75,19 @@ namespace MovieShopMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterModel model)
         {
-            var userId = await _accountService.RegisterUser(model);
-
-            if (userId > 0)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Login");
+                // save the database
+                var userId = await _accountService.RegisterUser(model);
+
+                if (userId > 0)
+                {
+                    return RedirectToAction("Login");
+                }
+
             }
-            return View();
+            return View(model);
+
         }
     }
 }
