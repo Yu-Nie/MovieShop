@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using MovieShopMVC.Infra;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); // call UseKestrel
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -51,14 +51,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+// Middlewares
 app.UseMovieShopExceptionMiddleware();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
-// Middlewares
 app.UseAuthentication(); // always before authorization 
 app.UseAuthorization();
 

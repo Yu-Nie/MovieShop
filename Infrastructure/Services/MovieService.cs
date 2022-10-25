@@ -12,6 +12,7 @@ namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
+        //  MovieSerive depends on IMovieRepository
         private readonly IMovieRepository _movieRepository;
 
         public MovieService(IMovieRepository movieRepository)
